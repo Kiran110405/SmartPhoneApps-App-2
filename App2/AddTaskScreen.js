@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreen() {
+export default function AddTaskScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
@@ -28,31 +28,6 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Button title="Add New Task" onPress={() => setModalVisible(true)} />
-
-      <FlatList
-        style={{
-          width: "90%",
-          borderWidth: 1,
-          width: "100%",
-          borderWidth: 5,
-          margin: "auto",
-        }}
-        data={newTask}
-        renderItem={({ item }) => (
-          <Text
-            style={{
-              fontSize: 20,
-              textAlign: "center",
-              backgroundColor: "white",
-              padding: 10,
-              margin: 10,
-            }}
-          >
-            {item}
-          </Text>
-        )}
-      ></FlatList>
-
       <Modal
         animationType="fade"
         transparent={true}
@@ -75,6 +50,31 @@ export default function HomeScreen() {
           </View>
         </View>
       </Modal>
+      <View>
+        <FlatList
+          style={{
+            width: "90%",
+            borderWidth: 1,
+            width: "100%",
+            borderWidth: 5,
+            margin: "auto",
+          }}
+          data={newTask}
+          renderItem={({ item }) => (
+            <Text
+              style={{
+                fontSize: 20,
+                textAlign: "center",
+                backgroundColor: "white",
+                padding: 10,
+                margin: 10,
+              }}
+            >
+              {item}
+            </Text>
+          )}
+        ></FlatList>
+      </View>
     </SafeAreaView>
   );
 }
