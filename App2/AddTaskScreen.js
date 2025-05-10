@@ -1,11 +1,24 @@
-import { View, Text, TextInput, Button, Modal, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  Modal,
+  StyleSheet,
+  FlatList,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
+  const [newTask, setnewTask] = useState([]);
+
+  useEffect(() => {
+    setnewTask((previous) => [...previous, outputText]);
+  }, [outputText]);
 
   const DealSubmit = () => {
     console.log("User input:", inputText);
@@ -15,6 +28,30 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Button title="Add New Task" onPress={() => setModalVisible(true)} />
+
+      <FlatList
+        style={{
+          width: "90%",
+          borderWidth: 1,
+          width: "100%",
+          borderWidth: 5,
+          margin: "auto",
+        }}
+        data={newTask}
+        renderItem={({ item }) => (
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: "center",
+              backgroundColor: "white",
+              padding: 10,
+              margin: 10,
+            }}
+          >
+            {item}
+          </Text>
+        )}
+      ></FlatList>
 
       <Modal
         animationType="fade"
