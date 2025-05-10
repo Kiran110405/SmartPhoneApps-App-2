@@ -26,7 +26,7 @@ export default function AddTaskScreen() {
     setInputText("");
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Button title="Add New Task" onPress={() => setModalVisible(true)} />
       <Modal
         animationType="fade"
@@ -75,7 +75,7 @@ export default function AddTaskScreen() {
           )}
         ></FlatList>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
