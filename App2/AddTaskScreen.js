@@ -53,11 +53,10 @@ export default function AddTaskScreen() {
       <View>
         <FlatList
           style={{
-            width: "90%",
+            width: "100%",
             borderWidth: 1,
             width: "100%",
             borderWidth: 5,
-            margin: "auto",
           }}
           data={newTask}
           renderItem={({ item }) => (
@@ -65,9 +64,10 @@ export default function AddTaskScreen() {
               style={{
                 fontSize: 20,
                 textAlign: "center",
-                backgroundColor: "white",
+                backgroundColor: "grey",
+                color: "white",
                 padding: 10,
-                margin: 10,
+                marginTop: 10,
               }}
             >
               {item}
