@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useReState } from "@raulpesilva/re-state";
 
 export default function AddTaskScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -39,6 +40,15 @@ export default function AddTaskScreen() {
             <Text style={styles.text}>Enter New Task</Text>
             <TextInput
               style={styles.Textinput}
+              placeholder="Task Deadline"
+              value={inputText}
+              onChangeText={(t) => setInputText(t)}
+              onSubmitEditing={() => {
+                setOutputText(inputText);
+              }}
+            ></TextInput>
+            <TextInput
+              style={styles.Textinput}
               placeholder="Your New Task..."
               value={inputText}
               onChangeText={(t) => setInputText(t)}
@@ -46,44 +56,21 @@ export default function AddTaskScreen() {
                 setOutputText(inputText);
               }}
             ></TextInput>
-            <Button title="Add" onPress={DealSubmit} />
+            <Button title="Submit" onPress={DealSubmit} />
           </View>
         </View>
       </Modal>
-      <View>
-        <FlatList
-          style={{
-            width: "100%",
-            borderWidth: 1,
-            width: "100%",
-            borderWidth: 5,
-          }}
-          data={newTask}
-          renderItem={({ item }) => (
-            <Text
-              style={{
-                fontSize: 20,
-                textAlign: "center",
-                backgroundColor: "grey",
-                color: "white",
-                padding: 10,
-                marginTop: 10,
-              }}
-            >
-              {item}
-            </Text>
-          )}
-        ></FlatList>
-      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    marginTop: "50%",
+    marginLeft: 25,
+    marginRight: 25,
     backgroundColor: "white",
-    padding: 30,
+    padding: 50,
     borderRadius: 10,
   },
 
@@ -98,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffff",
     padding: 20,
     borderRadius: 20,
+    gap: 10,
   },
 
   text: {
@@ -110,8 +98,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 2,
     padding: 10,
-    width: 200,
-    margin: 10,
+    width: "100%",
+    margin: "auto",
     textAlign: "center",
   },
 });
