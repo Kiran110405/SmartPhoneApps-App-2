@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Switch } from "react-native";
+import { useReState } from "@raulpesilva/re-state";
 
 export default function App() {
   const [isEnabled, setIsEnabled] = useState(false);
+  const [userInput, setUserInput] = useReState("input", "");
 
   return (
     <View

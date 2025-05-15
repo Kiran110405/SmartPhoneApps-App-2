@@ -13,19 +13,10 @@ import { useReState } from "@raulpesilva/re-state";
 
 export default function AddTaskScreen() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
+  const [userInput, setUserInput] = useState("");
   const [newTask, setnewTask] = useState([]);
+  const [outPutText, setOutputText] = useReState("output", "");
 
-  useEffect(() => {
-    setnewTask((previous) => [...previous, outputText]);
-  }, [outputText]);
-
-  const DealSubmit = () => {
-    console.log("User input:", inputText);
-    setModalVisible(false);
-    setInputText("");
-  };
   return (
     <View style={styles.container}>
       <Button title="Add New Task" onPress={() => setModalVisible(true)} />
@@ -41,22 +32,19 @@ export default function AddTaskScreen() {
             <TextInput
               style={styles.Textinput}
               placeholder="Task Deadline"
-              value={inputText}
-              onChangeText={(t) => setInputText(t)}
+              value={userInput}
+              onChangeText={(t) => setUserInput(t)}
               onSubmitEditing={() => {
-                setOutputText(inputText);
+                setOutputText(userInput);
               }}
             ></TextInput>
-            <TextInput
-              style={styles.Textinput}
-              placeholder="Your New Task..."
-              value={inputText}
-              onChangeText={(t) => setInputText(t)}
-              onSubmitEditing={() => {
-                setOutputText(inputText);
+            const [modalVisible, setModalVisible] = useState(false);
+            <Button
+              title="Submit"
+              onPress={() => {
+                setModalVisible(false);
               }}
-            ></TextInput>
-            <Button title="Submit" onPress={DealSubmit} />
+            />
           </View>
         </View>
       </Modal>
