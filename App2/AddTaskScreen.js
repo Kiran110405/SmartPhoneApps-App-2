@@ -17,8 +17,10 @@ export default function AddTaskScreen() {
   const [newTask, setnewTask] = useState([]);
   const [outPutText, setOutputText] = useReState("output", "");
 
+  const [bgc] = useReState("bgc", "ffffff");
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: bgc }]}>
       <Button title="Add New Task" onPress={() => setModalVisible(true)} />
       <Modal
         animationType="fade"

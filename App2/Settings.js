@@ -1,28 +1,17 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Switch } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { useReState } from "@raulpesilva/re-state";
 
 export default function App() {
   const [isEnabled, setIsEnabled] = useState(false);
   const [userInput, setUserInput] = useReState("input", "");
 
+  const [bgc, setBgc] = useReState("bgc", "fff");
   return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor: isEnabled ? "#131313" : "#fff" },
-      ]}
-    >
-      <Text style={{ color: isEnabled ? "#fff" : "#000", fontSize: 24 }}>
-        Switch demo
-      </Text>
-      <Switch
-        trackColor={{ false: "gray", true: "#007AFF" }}
-        thumbColor={isEnabled ? "white" : "#007AFF"}
-        onValueChange={() => setIsEnabled((bool) => !bool)}
-        value={isEnabled}
-        style={{ margin: 15 }}
-      ></Switch>
+    <View style={[styles.container, { backgroundColor: bgc }]}>
+      <Text style={{ fontSize: 24, padding: 10 }}>Settings Screen</Text>
+      <Button title="Purple" onPress={() => setBgc("#7777ff77")}></Button>
+      <Button title="Reset" onPress={() => setBgc("#ffffff")} />
     </View>
   );
 }
